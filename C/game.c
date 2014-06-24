@@ -6,11 +6,6 @@
 
 typedef char Question[255];
 
-Question pop_questions[50];
-Question science_questions[50];
-Question sports_questions[50];
-Question rock_questions[50];
-
 struct Game
 {
   int places[6];
@@ -31,7 +26,6 @@ struct Game
 };
 
 static void ask_question (struct Game *game);
-static void create_rock_question ();
 static const char *current_category (struct Game *game);
 
 static bool did_player_win (struct Game *game);
@@ -40,7 +34,7 @@ static void init_questions(struct Game *game, int i) {
   sprintf (game->pop_question[i], "Pop Question %d", i);
   sprintf (game->science_question[i], "Science Question %d", i);
   sprintf (game->sports_question[i], "Sports Question %d", i);
-  create_rock_question (i);
+  sprintf (game->rock_question[i], "Rock Question %d", i);
 }
 
 struct Game *
@@ -52,21 +46,15 @@ game_new ()
   game = malloc (sizeof (struct Game));
   game->player_num = 0;
 
-  game->pop_question = pop_questions;
-  game->science_question = science_questions;
-  game->sports_question = sports_questions;
-  game->rock_question = rock_questions;
+  game->pop_question = malloc(50 * sizeof(Question));
+  game->science_question = malloc(50 * sizeof(Question));
+  game->sports_question = malloc(50 * sizeof(Question));
+  game->rock_question = malloc(50 * sizeof(Question));
 
   for (i = 0; i < 50; i++)
     init_questions(game, i);
 
   return game;
-}
-
-  void
-create_rock_question (int index)
-{
-  sprintf (rock_questions[index], "Rock Question %d", index);
 }
 
   bool

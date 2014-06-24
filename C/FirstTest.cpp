@@ -28,3 +28,9 @@ TEST(TRIVIATEST, isGamePlayable) {
 	game_add(game, "Jayant");
 	CHECK(game_is_playable(game));
 }
+
+TEST(TRIVIATEST, rollFiftyTimes) {
+	for(int i = 0; i<500; i++)
+		game_roll (game, i);
+	CHECK(1);
+}
