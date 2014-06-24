@@ -29,4 +29,5 @@ main ()
     }
   }
   while (not_a_winner);
+  return 0;
 }

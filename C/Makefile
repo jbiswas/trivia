@@ -1,6 +1,8 @@
 CPPFLAGS = -fprofile-arcs \
            -ftest-coverage \
-           -Wall
+           -Wall \
+           -Wextra \
+           -Werror
 LDLIBS  += -lgcov
 LDLIBS  += `pkg-config --libs cpputest`
 
@@ -9,7 +11,7 @@ game: time.c game.c game_runner.c
 AllTests: AllTests.o FirstTest.o game.c
 
 check: AllTests game
-	./$<
+	valgrind ./$<
 	./game | diff oracle.txt -
 	gcov game.c
 
