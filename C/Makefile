@@ -1,14 +1,16 @@
 CPPFLAGS = -fprofile-arcs \
-           -ftest-coverage
+           -ftest-coverage \
+           -Wall
 LDLIBS  += -lgcov
 LDLIBS  += `pkg-config --libs cpputest`
 
-game: game.c game_runner.c
+game: time.c game.c game_runner.c
 
 AllTests: AllTests.o FirstTest.o game.c
 
-check: AllTests
+check: AllTests game
 	./$<
+	./game | diff oracle.txt -
 	gcov game.c
 
 clean:

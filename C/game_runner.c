@@ -13,20 +13,20 @@ main ()
   game_add (a_game, "Pat");
   game_add (a_game, "Sue");
 
-	srand ((unsigned)time(0));
+  srand ((unsigned)time(0));
 
-      do
-	{
-	  game_roll (a_game, rand () % 5 + 1);
+  do
+  {
+    game_roll (a_game, rand () % 5 + 1);
 
-	  if (rand () % 9 == 7)
-	    {
-	      not_a_winner = game_wrong_answer (a_game);
-	    }
-	  else
-	    {
-	      not_a_winner = game_was_correctly_answered (a_game);
-	    }
-	}
-      while (not_a_winner);
+    if (rand () % 9 == 7)
+    {
+      not_a_winner = game_wrong_answer (a_game);
+    }
+    else
+    {
+      not_a_winner = game_was_correctly_answered (a_game);
+    }
   }
+  while (not_a_winner);
+}
